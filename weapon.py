@@ -1,7 +1,7 @@
 
 
 class Weapon :
-    def __init__(self, name, attack_power):
+    def __init__(self, name):
         
         self.name = name
-        self.atck_pwr = int(attack_power)
+        self.atck_pwr = 31
