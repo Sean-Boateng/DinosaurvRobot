@@ -1,6 +1,6 @@
 
 
-from os import name
+
 from dino import Dinosaur
 from robot import Robot
 
@@ -15,26 +15,44 @@ class Battlefield() :
 
     def display_welcome(self):
         print("Welcome to the Battle of the centuty.")
-        print("Are you ready "+ self.robot.name)
-        print("Are you ready "+ self.dinosaur.name)
+        print("Are you ready "+ self.robot.name + "?")
+        print("Are you ready "+ self.dinosaur.name + "?")
         print("Fight!!!")
 
-        
+   
 
     def battle_phase(self):
-        # robo_move = self.robot.attack(self.dinosaur)
-        Robot.attack(self, dinosaur="")
-        Dinosaur.attack(self , robot="")
+        can_continue = False
+        while can_continue is False:
+            self.dinosaur.health = self.dinosaur.health - self.robot.active_weapon.atck_pwr
+            
+            self.robot.health= self.robot.health - self.dinosaur.atck_pwr
+
+            
+        
+            if self.robot.health <= 0 or self.dinosaur.health <= 0:
+                can_continue = True
+                print("Battle Over")
+                break
+            else:
+                print("Again")
+            
+            
+    
+
+        
+        
         
         
         
        
 
     def display_winner(self):
-        if self.robot.robot_attack <= 0 and self.dinosaur.dino_attack >= 0:
-            print(self.robot.name +"Wins!!")
-        elif self.dinosaur.dino_attack <= 0 and self.robot.robot_attack >= 0:
-            print(self.dinosaur.name + "Wins!!!")
-        else:
-            Battlefield.battle_phase(self)
+        if self.robot.health <= 0 and self.dinosaur.health >= 0:
+            print(self.dinosaur.name +"Wins!!")
+        elif self.dinosaur.health <= 0 and self.robot.health >= 0:
+            print(self.robot.name + "Wins!!!")
+        
+
+
         
